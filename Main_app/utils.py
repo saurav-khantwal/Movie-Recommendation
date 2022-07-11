@@ -6,10 +6,10 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 
 
-movies_data = pd.read_csv('Application/Main_app/data/Processed_data.csv')
-genres = pickle.load(open('Application/Main_app/data/genres.pkl', 'rb'))
-cast = pickle.load(open('Application/Main_app/data/cast.pkl', 'rb'))
-directors = pickle.load(open('Application/Main_app/data/directors.pkl', 'rb'))
+movies_data = pd.read_csv('Main_app/data/Processed_data.csv')
+genres = pickle.load(open('Main_app/data/genres.pkl', 'rb'))
+cast = pickle.load(open('Main_app/data/cast.pkl', 'rb'))
+directors = pickle.load(open('Main_app/data/directors.pkl', 'rb'))
 
 
 def stem(text):
