@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block content %}
+<h1 class="mt-5">Movie Recommendation Application</h1>
+    <div class="container">
+        <a class="btn btn-lg btn-block btn-edit" href="{{ url_for('recommend_page') }}">Get Started</a>
+    </div>
+    
+{% endblock %}

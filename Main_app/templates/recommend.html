@@ -1,0 +1,60 @@
+{% extends 'base.html' %} {% block title %} Home Page {% endblock %} {% block
+  content %}
+  {% if rec %}
+    <h1 class="mt-4">Movies Recommendation System</h1>
+  {% else %}
+    <h1 class="mt-4">Discover Movies</h1>
+  {% endif %}
+  <div class="container mt-5">
+    <form class="form-signin" style="color:white" method="post">
+      {{ form.hidden_tag() }}
+      {% if rec %}
+        {{ form.input_movie(class="form-control mb-1 m-suggest", placeholder="Movie Name") }}
+      {% else %}
+        {{ form.input_movie(class="form-control mb-1 m-suggest", placeholder="Actor, Director, Genre") }}
+      {% endif %}
+      <br>
+      {{ form.submit(class="btn btn-lg btn-block mt-2 btn-edit") }}
+  </form>
+  </div>
+  
+  
+  
+  {% if output_movies %}
+    {% if output_movies[0].movie_name == "unexpected error has occured saurav" %}
+        <h2>Opps Looks like this Your search doesn't exist!!</h1>
+  
+    {% elif output_movies[0].movie_name == "ServerTimedOut" %}
+          <h2>Something Went Wrong Please Try Again After Some Time</h2>
+    {% else %}                    
+  
+  <div class="container mt-5"> 
+    <div class="card-deck" style="color:black;">
+      {% for movie in output_movies %}
+      {% include 'includes/expand.html' %}
+  
+        <div class="card btn-edit" style="min-width: 20rem; max-width: 22rem; margin-top: 5px;">
+            <img class="card-img-top" src="{{movie.movie_poster}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{movie.movie_name}}</h5>
+              <button data-toggle="modal" data-target="#Modal-Expand-{{ movie.id }}" class="btn btn-success">Overview</button>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+    {% endif%}
+  {% endif%}
+  
+  
+  <script>
+      $( function() {
+      data = JSON.parse({{ suggestions | tojson }})
+      
+      $( ".m-suggest" ).autocomplete({
+        source: data
+      });
+    } );
+  </script>
+  {% endblock %}
+  
