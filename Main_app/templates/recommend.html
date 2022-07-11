@@ -1,5 +1,12 @@
-{% extends 'base.html' %} {% block title %} Home Page {% endblock %} {% block
-  content %}
+{% extends 'base.html' %} 
+{% block title %} 
+  {% if rec %}
+    Recommendation
+  {% else %}
+    Discover
+  {% endif %} 
+{% endblock %} 
+{% block content %}
   {% if rec %}
     <h1 class="mt-4">Movies Recommendation System</h1>
   {% else %}
